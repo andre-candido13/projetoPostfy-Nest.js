@@ -2,7 +2,7 @@ import { IsString, IsEmail, IsNotEmpty, IsStrongPassword } from "class-validator
 
 export class CreateUserDTO {
     @IsString()
-    nome: string;
+    name: string;
 
     @IsString()
     @IsEmail()

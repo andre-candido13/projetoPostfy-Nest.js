@@ -8,9 +8,9 @@ export class UsersController {
 
 
   @Post()
-  addUser(@Body() createdUserDTO: CreateUserDTO) {
-    const { nome, email, password, avatar} = createdUserDTO
-    return this.usersService.addUser(nome, email, password, avatar);
+  addUser(@Body() body: CreateUserDTO) {
+    
+    return this.usersService.addUser(body);
   }
 
   @Get()

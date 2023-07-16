@@ -1,16 +1,24 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Body, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Users } from './entity/emtity';
+import { CreateUserDTO } from './DTO/create-user.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import * as bcrypt from "bcrypt"
 
 @Injectable()
 export class UsersService {
-user = []
+  constructor(private readonly prisma: PrismaService) { }
+  user: Users[] = [];
 
-    addUser(nome: string, email: string, password: string, avatar: string) {
-        const users = new Users(nome, email, password, avatar)
-      this.user.push(users)
-    }
+  async addUser(data: CreateUserDTO) {
+    const hashPassword = bcrypt.hashSync(data.password, 10)
+    const existingUser = this.prisma.user.findUnique({where: {email: data.email}})
+    if (existingUser) throw new HttpException('Usuário já cadastrado', HttpStatus.CONFLICT)
+    const hash = ({ ...data, password: hashPassword })
+    await this.prisma.user.create({ data: hash })
+    return data
+  }
 
-    getUser(): Users[] {
-     return this.user;
-    }
+  async getUser() {
+    return await this.prisma.user.findMany({});
+  }
 }

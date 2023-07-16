@@ -1,26 +1,26 @@
 
 
 export class Users {
-    private paramsNome: string;
+    private paramsName: string;
     private paramsEmail: string;
     private paramsPassword: string;
     private paramsAvatar: string;
     createdAt: Date;
 
-    constructor(nome: string, email: string, password: string, avatar: string) {
-        this.paramsNome = nome
+    constructor(name: string, email: string, password: string, avatar: string) {
+        this.paramsName = name
         this.paramsEmail = email;
         this.paramsPassword = password;
         this.paramsAvatar = avatar
         this.createdAt = new Date()
       }
 
-        set nome(nome: string) {
-        this.nome = nome
+        set name(name: string) {
+        this.name = name
         };
 
-        get nome() {
-            return this.paramsNome
+        get name() {
+            return this.paramsName
         }
 
         set email(email: string) {
