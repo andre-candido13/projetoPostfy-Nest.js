@@ -16,6 +16,7 @@ model User {
   email    String   @unique
   password String
   avatar   String?
+  createdAt DateTime
   publications Publication[]
 }
 
@@ -25,7 +26,7 @@ model Publication {
   title         String
   text          String
   dateToPublish DateTime
-  published     Boolean
+  published     Boolean   @default(false)
   socialMedia   String
   user          User     @relation(fields: [user_id], references: [id])
   user_id       Int

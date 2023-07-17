@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { SignInDto } from './auth-signIn.dto';
-import { AuthSignUpDto } from './auth-signUp.dto';
+import { SignInDto } from './DTO/auth-signIn.dto';
+import { AuthSignUpDto } from './DTO/auth-signUp.dto';
 import { UsersService } from 'src/users/users.service';
 import { CreateUserDTO } from 'src/users/DTO/create-user.dto';
 import { PrismaService } from 'nestjs-prisma';
