@@ -17,6 +17,7 @@ export class CreatePublicationsDTO {
     @IsString()
     text: string
 
+    @IsString()
     @IsDateString()
     dateToPublish: string
 
@@ -24,5 +25,7 @@ export class CreatePublicationsDTO {
 
     @IsString()
     socialMedia: string
+
+    user_id: number
 
 }

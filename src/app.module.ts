@@ -3,8 +3,9 @@ import { UsersModule } from './users/users.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { PublicationsController } from './publications/publications.controller';
-import { PublicationsService } from './publications/publications.service';
-import { PublicationsModule } from './publications/publications.module';
+import { PublicationsModule } from './publications/publication.module';
+import { PublicationsService } from './publications/publication.service';
+
 
 
 @Module({

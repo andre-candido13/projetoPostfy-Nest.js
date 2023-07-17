@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { SignInDto } from './DTO/auth-signIn.dto';
 import { AuthSignUpDto } from './DTO/auth-signUp.dto';
 import { UsersService } from 'src/users/users.service';
@@ -41,4 +41,18 @@ constructor(
        return this.createToken(user);
 }
 
+checkToken(token: string) {
+
+    try {
+        const data = this.jwtService.verify(token)
+        return data
+
+    } catch (error) {
+        console.log(error)
+        throw new BadRequestException(error)
+    }
+
 }
+
+}
+ 

@@ -1,7 +1,9 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
 import { SignInDto } from './DTO/auth-signIn.dto';
 import { AuthService } from './auth.service';
 import { AuthSignUpDto } from './DTO/auth-signUp.dto';
+import { User } from '@prisma/client';
+import { AuthGuard } from './authGuard/auth.guard';
 
 
 @Controller('auth')
@@ -20,9 +22,12 @@ export class AuthController {
             return await this.authService.signUp(body)
         }
 
-    @Get()
-    async getSignIn(@Body() body: SignInDto) {
-        return this.authService.signIn(body)
+
+    @UseGuards(AuthGuard)
+    @Get('me')
+    async userLogged(user: User) {
+        return user
+        
     }    
     
 }

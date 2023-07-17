@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body } from '@nestjs/common';
+import { Controller, Post, Get, Body, Param, ParseIntPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDTO } from './DTO/create-user.dto';
 
@@ -13,8 +13,8 @@ export class UsersController {
     return this.usersService.addUser(body);
   }
 
-  @Get()
-  getUser() {
-    return this.usersService.getUser();
+  @Get(':id/publication')
+  findUserById(@Param('id', ParseIntPipe) user_id: number) {
+    return this.usersService.findUserById(user_id);
   }
 }
